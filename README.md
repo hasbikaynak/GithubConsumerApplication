@@ -22,6 +22,7 @@ This repository contains a Java 17 application built with Spring Boot 3 that ser
 Open your Postman and write this url for sending the request: localhost:8080/github/repositories?username={YOUR_USERNAME}
 (Don`t forget to write your username into brackets)
 
+And make your HTTP request type "GET"
 ![image](https://github.com/hasbikaynak/GithubConsumerApplication/assets/73940626/fdcbd28d-8088-42b4-8acc-076c4c000f70)
 
 Select headers tab and write "Accept" as a key and "application/json" as a value.
