@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "bdaba02a-a3d4-4797-95ea-806f7ed94f16",
+		"name": "A_GithubConsumerApplication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25619026"
+	},
+	"item": [
+		{
+			"name": "getRepositoriesWithOtherInfos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/github/repositories?username=hasbikaynak",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"github",
+						"repositories"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "hasbikaynak"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
