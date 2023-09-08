@@ -3,6 +3,7 @@ package com.example.githubconsumerapplication.service;
 import com.example.githubconsumerapplication.config.AppConfig;
 import com.example.githubconsumerapplication.dto.*;
 import com.example.githubconsumerapplication.error.ErrorMessages;
+import com.example.githubconsumerapplication.exception.TokenNotFoundException;
 import com.example.githubconsumerapplication.exception.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.*;
@@ -27,13 +28,15 @@ public class GithubApiService {
         headers.set("Authorization", "Bearer " + appConfig.getGithubToken());
 
         final HttpEntity<Object> entity = new HttpEntity<>(headers);
-        ResponseEntity<GithubRepositoryDto[]> response = null;
+        ResponseEntity<GithubRepositoryDto[]> response;
         try {
             // Make the API request with the access token
             response = restTemplate.exchange(apiUrlForRepositories, HttpMethod.GET, entity, GithubRepositoryDto[].class);
         } catch (HttpClientErrorException ex) {
             if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
                 throw new UserNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND_ERROR_MESSAGES, username), HttpStatus.NOT_FOUND);
+            } else {
+                throw new TokenNotFoundException(ErrorMessages.TOKEN_NOT_FOUND_ERROR_MESSAGES, HttpStatus.BAD_REQUEST);
             }
         }
 
